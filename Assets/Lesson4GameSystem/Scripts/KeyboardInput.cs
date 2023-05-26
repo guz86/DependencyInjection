@@ -1,11 +1,19 @@
 ﻿using System;
+using Lesson4GameSystem.Scripts.GameSystem;
 using UnityEngine;
 
 namespace Lesson4GameSystem.Scripts
 {
-    public class KeyboardInput : MonoBehaviour
+    public class KeyboardInput : MonoBehaviour,
+        IGameStartListener,
+        IGameFinishListener
     {
         public Action<Vector2> OnMove;
+
+        private void Awake()
+        {
+            enabled = false;
+        }
 
         private void Update()
         {
@@ -35,6 +43,16 @@ namespace Lesson4GameSystem.Scripts
         private void Move(Vector2 direction)
         {
             this.OnMove?.Invoke(direction);
+        }
+
+        void IGameStartListener.OnStartGame()
+        {
+            enabled = true;
+        }
+
+        void IGameFinishListener.OnFinishGame()
+        {
+            enabled = false;
         }
     }
 }

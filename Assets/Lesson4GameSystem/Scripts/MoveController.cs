@@ -1,22 +1,22 @@
-﻿using Lesson4GameSystem.Scripts;
+﻿using Lesson4GameSystem.Scripts.GameSystem;
 using UnityEngine;
 
-namespace Lesson4.Scripts
+namespace Lesson4GameSystem.Scripts
 {
-    public class MoveController : MonoBehaviour
+    public class MoveController : MonoBehaviour,
+        IGameStartListener,
+        IGameFinishListener
     {
-        [SerializeField]
-        private Player player;
+        [SerializeField] private Player player;
 
-        [SerializeField]
-        private KeyboardInput input;
-        
-        void OnEnable()
+        [SerializeField] private KeyboardInput input;
+
+        void IGameStartListener.OnStartGame()
         {
             this.input.OnMove += this.OnMove;
         }
 
-        void OnDisable()
+        void IGameFinishListener.OnFinishGame()
         {
             this.input.OnMove -= this.OnMove;
         }

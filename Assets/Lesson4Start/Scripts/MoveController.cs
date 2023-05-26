@@ -8,7 +8,7 @@ namespace Lesson4Start.Scripts
         private Player player;
 
         [SerializeField]
-        private Lesson4GameSystem.Scripts.KeyboardInput input;
+        private KeyboardInput input;
         
         void OnEnable()
         {
