@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scenes.Scripts
+namespace Lesson4Start.Scripts
 {
     public class CameraFollower : MonoBehaviour
     {

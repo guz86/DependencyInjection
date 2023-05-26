@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scenes.Scripts
+namespace Lesson4Start.Scripts
 {
     public class MoveController : MonoBehaviour
     {
@@ -8,7 +8,7 @@ namespace Scenes.Scripts
         private Player player;
 
         [SerializeField]
-        private KeyboardInput input;
+        private Lesson4GameSystem.Scripts.KeyboardInput input;
         
         void OnEnable()
         {
