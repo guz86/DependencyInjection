@@ -126,6 +126,19 @@ namespace Lesson5ServiceLocator.Scripts.GameSystem
                 this.lateUpdateListeners.Remove(lateUpdateListener);
             }
         }
+        
+        [Button]
+        public void InitGame()
+        {
+            foreach (var listener in this.listeners)
+            {
+                if (listener is IGameInitListener initListener)
+                {
+                    initListener.OnInit();
+                }
+            } 
+        }
+        
 
         [Button]
         public void StartGame()
