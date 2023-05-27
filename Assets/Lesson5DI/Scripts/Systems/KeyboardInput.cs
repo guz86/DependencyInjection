@@ -1,8 +1,7 @@
 ﻿using System;
-using Lesson5DI.Scripts.GameSystem;
 using UnityEngine;
 
-namespace Lesson5DI.Scripts.Systems
+namespace Lesson5DI
 {
     public class KeyboardInput : MonoBehaviour,
         IGameUpdateListener

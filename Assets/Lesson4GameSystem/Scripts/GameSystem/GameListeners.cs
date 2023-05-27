@@ -1,4 +1,4 @@
-﻿namespace Lesson4GameSystem.Scripts.GameSystem
+﻿namespace Lesson4GameSystem
 {
     public interface IGameListener
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lesson5DI.Scripts
+namespace Lesson5DI
 {
     public static class ServiceLocator
     {

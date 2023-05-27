@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Lesson4GameSystem.Scripts
+namespace Lesson4GameSystem
 {
     public class Player : MonoBehaviour
     {

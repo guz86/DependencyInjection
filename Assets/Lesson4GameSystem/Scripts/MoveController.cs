@@ -1,7 +1,7 @@
-﻿using Lesson4GameSystem.Scripts.GameSystem;
+﻿
 using UnityEngine;
 
-namespace Lesson4GameSystem.Scripts
+namespace Lesson4GameSystem
 {
     public class MoveController : MonoBehaviour,
         IGameStartListener,

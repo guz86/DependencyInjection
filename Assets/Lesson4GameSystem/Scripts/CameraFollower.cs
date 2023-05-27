@@ -1,7 +1,6 @@
-﻿using Lesson4GameSystem.Scripts.GameSystem;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Lesson4GameSystem.Scripts
+namespace Lesson4GameSystem
 {
     public class CameraFollower : MonoBehaviour, IGameLateUpdateListener
         // IGameStartListener,

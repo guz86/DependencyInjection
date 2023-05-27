@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Lesson5DI.Scripts
+namespace Lesson5DI
 {
     public class Player : MonoBehaviour
     {

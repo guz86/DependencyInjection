@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Lesson5DI.Scripts.Systems
+namespace Lesson5DI
 {
     public interface IPlayerService
     {

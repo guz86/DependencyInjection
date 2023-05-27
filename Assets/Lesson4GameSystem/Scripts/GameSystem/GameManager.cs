@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Lesson4GameSystem.Scripts.GameSystem
+namespace Lesson4GameSystem
 {
     public enum GameState
     {

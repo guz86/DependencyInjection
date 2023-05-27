@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Lesson4GameSystem.Scripts.GameSystem
+namespace Lesson4GameSystem
 {
     [RequireComponent(typeof(GameManager))] //Team
     public sealed class GameManagerInstaller : MonoBehaviour //Team

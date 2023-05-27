@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace Lesson5DI.Scripts
+namespace Lesson5DI
 {
     public sealed class ServiceLocatorInstaller : MonoBehaviour
     {

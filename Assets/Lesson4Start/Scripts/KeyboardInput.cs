@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Lesson4Start.Scripts
+namespace Lesson4Start
 {
     public class KeyboardInput : MonoBehaviour
     {
