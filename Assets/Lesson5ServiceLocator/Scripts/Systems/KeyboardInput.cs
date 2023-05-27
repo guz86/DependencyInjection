@@ -7,11 +7,11 @@ namespace Lesson5ServiceLocator.Scripts.Systems
     public class KeyboardInput : MonoBehaviour,
         IGameUpdateListener
     {
-        public static KeyboardInput Instance { get; private set; }
+       // public static KeyboardInput Instance { get; private set; }
         
         public event Action<Vector2> OnMove;
 
-        private void Awake()
+        /*private void Awake()
         {
             Instance = this;
             
@@ -25,7 +25,7 @@ namespace Lesson5ServiceLocator.Scripts.Systems
             // }
             //
             // Destroy(gameObject);
-        }
+        }*/
 
         void IGameUpdateListener.OnUpdate(float deltaTime)
         {

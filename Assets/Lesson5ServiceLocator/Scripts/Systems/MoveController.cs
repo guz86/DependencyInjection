@@ -16,13 +16,15 @@ namespace Lesson5ServiceLocator.Scripts.Systems
         void IGameStartListener.OnStartGame()
         {
             //this.input.OnMove += this.OnMove;
-            KeyboardInput.Instance.OnMove += this.OnMove;
+            //KeyboardInput.Instance.OnMove += this.OnMove;
+            ServiceLocator.GetService<KeyboardInput>().OnMove += this.OnMove;
         }
 
         void IGameFinishListener.OnFinishGame()
         {
             //this.input.OnMove -= this.OnMove;
-            KeyboardInput.Instance.OnMove -= this.OnMove;
+            //KeyboardInput.Instance.OnMove -= this.OnMove;
+            ServiceLocator.GetService<KeyboardInput>().OnMove += this.OnMove;
         }
 
         private void OnMove(Vector2 direction)
@@ -30,7 +32,8 @@ namespace Lesson5ServiceLocator.Scripts.Systems
             var offset = new Vector3(direction.x, 0, direction.y) * Time.deltaTime;
             //_player.Move(offset);
             //_playerService.GetPlayer().Move(offset);
-            PlayerService.Instance.GetPlayer().Move(offset);
+            //PlayerService.Instance.GetPlayer().Move(offset);
+            ServiceLocator.GetService<PlayerService>().GetPlayer().Move(offset);
         }
     }
 }
