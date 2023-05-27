@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Lesson4GameSystem.Scripts
 {
-    public class CameraFollower : MonoBehaviour,
-        IGameStartListener,
-        IGameFinishListener
+    public class CameraFollower : MonoBehaviour, IGameLateUpdateListener
+        // IGameStartListener,
+        // IGameFinishListener
     {
         [SerializeField]
         private Camera targetCamera;
@@ -16,7 +16,13 @@ namespace Lesson4GameSystem.Scripts
         [SerializeField]
         private Vector3 offset;
         
-        private void Awake()
+        
+        void IGameLateUpdateListener.OnLateUpdate(float deltaTime)
+        {
+            this.targetCamera.transform.position = this.player.GetPosition() + this.offset;
+        }
+        
+        /*private void Awake()
         {
             enabled = false;
         }
@@ -34,6 +40,6 @@ namespace Lesson4GameSystem.Scripts
         void IGameFinishListener.OnFinishGame()
         {
             enabled = false;
-        }
+        }*/
     }
 }

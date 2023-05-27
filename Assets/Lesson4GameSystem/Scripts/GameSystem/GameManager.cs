@@ -24,6 +24,60 @@ namespace Lesson4GameSystem.Scripts.GameSystem
         
         private readonly List<IGameListener> listeners = new();
         
+        private readonly List<IGameUpdateListener> updateListeners = new();
+        
+        private readonly List<IGameFixedUpdateListener> fixedUpdateListeners = new();
+        
+        private readonly List<IGameLateUpdateListener> lateUpdateListeners = new();
+
+        private void Update()
+        {
+            if (this.state != GameState.PLAYING)
+            {
+                return;
+            }
+
+            var deltaTime = Time.deltaTime;
+            for (int i = 0, count = this.updateListeners.Count; i < count; i++)
+            {
+                var listener = this.updateListeners[i];
+                listener.OnUpdate(deltaTime);
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if (this.state != GameState.PLAYING)
+            {
+                return;
+            }
+            
+            var deltaTime = Time.fixedDeltaTime;
+            for (int i = 0, count = this.fixedUpdateListeners.Count; i < count; i++)
+            {
+                var listener = this.fixedUpdateListeners[i];
+                listener.OnFixedUpdate(deltaTime);
+            }
+        }
+
+        private void LateUpdate()
+        {
+            if (this.state != GameState.PLAYING)
+            {
+                return;
+            }
+            
+            var deltaTime = Time.deltaTime;
+            for (int i = 0, count = this.lateUpdateListeners.Count; i < count; i++)
+            {
+                var listener = this.lateUpdateListeners[i];
+                listener.OnLateUpdate(deltaTime);
+            }
+        }
+        
+        
+        
+        
         public void AddListener(IGameListener listener)
         {
             if (listener == null)
@@ -32,6 +86,21 @@ namespace Lesson4GameSystem.Scripts.GameSystem
             }
             
             this.listeners.Add(listener);
+
+            if (listener is IGameUpdateListener updateListener)
+            {
+                this.updateListeners.Add(updateListener);
+            }
+
+            if (listener is IGameFixedUpdateListener fixedUpdateListener)
+            {
+                this.fixedUpdateListeners.Add(fixedUpdateListener);
+            }
+
+            if (listener is IGameLateUpdateListener lateUpdateListener)
+            {
+                this.lateUpdateListeners.Add(lateUpdateListener);
+            }
         }
 
 

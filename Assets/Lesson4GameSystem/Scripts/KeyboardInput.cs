@@ -5,8 +5,9 @@ using UnityEngine;
 namespace Lesson4GameSystem.Scripts
 {
     public class KeyboardInput : MonoBehaviour,
-        IGameStartListener,
-        IGameFinishListener
+        // IGameStartListener,
+        // IGameFinishListener,
+        IGameUpdateListener
     {
         public Action<Vector2> OnMove;
 
@@ -15,10 +16,15 @@ namespace Lesson4GameSystem.Scripts
             enabled = false;
         }
 
-        private void Update()
+        void IGameUpdateListener.OnUpdate(float deltaTime)
         {
             HandleKeyboard();
         }
+
+        // private void Update()
+        // {
+        //     HandleKeyboard();
+        // }
 
         private void HandleKeyboard()
         {
@@ -45,14 +51,14 @@ namespace Lesson4GameSystem.Scripts
             this.OnMove?.Invoke(direction);
         }
 
-        void IGameStartListener.OnStartGame()
-        {
-            enabled = true;
-        }
-
-        void IGameFinishListener.OnFinishGame()
-        {
-            enabled = false;
-        }
+        // void IGameStartListener.OnStartGame()
+        // {
+        //     enabled = true;
+        // }
+        //
+        // void IGameFinishListener.OnFinishGame()
+        // {
+        //     enabled = false;
+        // }
     }
 }
