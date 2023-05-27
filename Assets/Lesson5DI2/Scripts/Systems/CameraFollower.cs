@@ -12,7 +12,7 @@ namespace Lesson5DI2
 
         private IPlayerService _playerService;
 
-        //[Inject]
+        [Inject]
         public void Construct(IPlayerService playerService)
         {
             _playerService = playerService;

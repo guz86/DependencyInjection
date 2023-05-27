@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using JetBrains.Annotations;
 
 namespace Lesson5DI2
@@ -9,4 +9,4 @@ namespace Lesson5DI2
     {
         
     }
-}*/
+}

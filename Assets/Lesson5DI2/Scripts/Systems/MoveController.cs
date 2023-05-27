@@ -9,7 +9,7 @@ namespace Lesson5DI2
         private KeyboardInput _keyboardInput;
         private IPlayerService _playerService;
 
-        //[Inject]
+        [Inject]
         public void Construct(KeyboardInput keyboardInput, IPlayerService playerService)
         {
             _keyboardInput = keyboardInput;

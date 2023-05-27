@@ -21,6 +21,19 @@ namespace Lesson5DI2
             return result;
         }
 
+        public static object GetService(Type serviceType)
+        {
+            foreach (var service in services)
+            {
+                if (serviceType.IsInstanceOfType(service))
+                {
+                    return service;
+                }
+            }
+
+            throw new Exception($"Service of type {serviceType.Name} is not found");
+        }
+
         public static T GetService<T>()
         {
             foreach (var service in services)
