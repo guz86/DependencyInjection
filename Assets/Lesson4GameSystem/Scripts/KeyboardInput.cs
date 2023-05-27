@@ -9,12 +9,12 @@ namespace Lesson4GameSystem.Scripts
         // IGameFinishListener,
         IGameUpdateListener
     {
-        public Action<Vector2> OnMove;
+        public event Action<Vector2> OnMove;
 
-        private void Awake()
-        {
-            enabled = false;
-        }
+        // private void Awake()
+        // {
+        //     enabled = false;
+        // }
 
         void IGameUpdateListener.OnUpdate(float deltaTime)
         {

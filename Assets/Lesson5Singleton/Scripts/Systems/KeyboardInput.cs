@@ -7,11 +7,24 @@ namespace Lesson5Singleton.Scripts.Systems
     public class KeyboardInput : MonoBehaviour,
         IGameUpdateListener
     {
-        public Action<Vector2> OnMove;
+        public static KeyboardInput Instance { get; private set; }
+        
+        public event Action<Vector2> OnMove;
 
         private void Awake()
         {
-            enabled = false;
+            Instance = this;
+            
+            
+            // к дочерним не будет применятся, только к корневым
+            // if (Instance == null)
+            // {
+            //     Instance = this;
+            //     DontDestroyOnLoad(gameObject);
+            //     return;
+            // }
+            //
+            // Destroy(gameObject);
         }
 
         void IGameUpdateListener.OnUpdate(float deltaTime)
