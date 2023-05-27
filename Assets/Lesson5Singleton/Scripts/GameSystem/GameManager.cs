@@ -21,13 +21,14 @@ namespace Lesson5Singleton.Scripts.GameSystem
         }
 
         private GameState state;
-        
+
+        [ShowInInspector, ReadOnly]
         private readonly List<IGameListener> listeners = new();
-        
+
         private readonly List<IGameUpdateListener> updateListeners = new();
-        
+
         private readonly List<IGameFixedUpdateListener> fixedUpdateListeners = new();
-        
+
         private readonly List<IGameLateUpdateListener> lateUpdateListeners = new();
 
         private void Update()
@@ -51,7 +52,7 @@ namespace Lesson5Singleton.Scripts.GameSystem
             {
                 return;
             }
-            
+
             var deltaTime = Time.fixedDeltaTime;
             for (int i = 0, count = this.fixedUpdateListeners.Count; i < count; i++)
             {
@@ -66,7 +67,7 @@ namespace Lesson5Singleton.Scripts.GameSystem
             {
                 return;
             }
-            
+
             var deltaTime = Time.deltaTime;
             for (int i = 0, count = this.lateUpdateListeners.Count; i < count; i++)
             {
@@ -74,17 +75,15 @@ namespace Lesson5Singleton.Scripts.GameSystem
                 listener.OnLateUpdate(deltaTime);
             }
         }
-        
-        
-        
-        
+
+
         public void AddListener(IGameListener listener)
         {
             if (listener == null)
             {
                 return;
             }
-            
+
             this.listeners.Add(listener);
 
             if (listener is IGameUpdateListener updateListener)
@@ -102,7 +101,31 @@ namespace Lesson5Singleton.Scripts.GameSystem
                 this.lateUpdateListeners.Add(lateUpdateListener);
             }
         }
+        
+        public void RemoveListener(IGameListener listener)
+        {
+            if (listener == null)
+            {
+                return;
+            }
+            
+            this.listeners.Remove(listener);
 
+            if (listener is IGameUpdateListener updateListener)
+            {
+                this.updateListeners.Remove(updateListener);
+            }
+
+            if (listener is IGameFixedUpdateListener fixedUpdateListener)
+            {
+                this.fixedUpdateListeners.Remove(fixedUpdateListener);
+            }
+
+            if (listener is IGameLateUpdateListener lateUpdateListener)
+            {
+                this.lateUpdateListeners.Remove(lateUpdateListener);
+            }
+        }
 
         [Button]
         public void StartGame()

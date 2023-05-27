@@ -22,6 +22,7 @@ namespace Lesson4GameSystem.Scripts.GameSystem
 
         private GameState state;
         
+        [ShowInInspector, ReadOnly]
         private readonly List<IGameListener> listeners = new();
         
         private readonly List<IGameUpdateListener> updateListeners = new();
@@ -76,8 +77,6 @@ namespace Lesson4GameSystem.Scripts.GameSystem
         }
         
         
-        
-        
         public void AddListener(IGameListener listener)
         {
             if (listener == null)
@@ -103,6 +102,30 @@ namespace Lesson4GameSystem.Scripts.GameSystem
             }
         }
 
+        public void RemoveListener(IGameListener listener)
+        {
+            if (listener == null)
+            {
+                return;
+            }
+            
+            this.listeners.Remove(listener);
+
+            if (listener is IGameUpdateListener updateListener)
+            {
+                this.updateListeners.Remove(updateListener);
+            }
+
+            if (listener is IGameFixedUpdateListener fixedUpdateListener)
+            {
+                this.fixedUpdateListeners.Remove(fixedUpdateListener);
+            }
+
+            if (listener is IGameLateUpdateListener lateUpdateListener)
+            {
+                this.lateUpdateListeners.Remove(lateUpdateListener);
+            }
+        }
 
         [Button]
         public void StartGame()

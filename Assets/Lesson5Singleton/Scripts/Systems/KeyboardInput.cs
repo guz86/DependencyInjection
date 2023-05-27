@@ -1,12 +1,10 @@
 ﻿using System;
-using Lesson4GameSystem.Scripts.GameSystem;
+using Lesson5Singleton.Scripts.GameSystem;
 using UnityEngine;
 
-namespace Lesson5Singleton.Scripts
+namespace Lesson5Singleton.Scripts.Systems
 {
     public class KeyboardInput : MonoBehaviour,
-        // IGameStartListener,
-        // IGameFinishListener,
         IGameUpdateListener
     {
         public Action<Vector2> OnMove;
@@ -20,11 +18,6 @@ namespace Lesson5Singleton.Scripts
         {
             HandleKeyboard();
         }
-
-        // private void Update()
-        // {
-        //     HandleKeyboard();
-        // }
 
         private void HandleKeyboard()
         {
@@ -50,15 +43,5 @@ namespace Lesson5Singleton.Scripts
         {
             this.OnMove?.Invoke(direction);
         }
-
-        // void IGameStartListener.OnStartGame()
-        // {
-        //     enabled = true;
-        // }
-        //
-        // void IGameFinishListener.OnFinishGame()
-        // {
-        //     enabled = false;
-        // }
     }
 }
