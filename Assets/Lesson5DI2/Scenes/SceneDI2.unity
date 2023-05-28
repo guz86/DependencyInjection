@@ -268,8 +268,8 @@ GameObject:
   - component: {fileID: 205304809}
   - component: {fileID: 205304813}
   - component: {fileID: 205304812}
-  - component: {fileID: 205304810}
   - component: {fileID: 205304814}
+  - component: {fileID: 205304810}
   m_Layer: 0
   m_Name: '[System]'
   m_TagString: Untagged
@@ -349,8 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfd34cfe26f8bf4c82bc034b0bd5c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraFollower: {fileID: 128086787}
-  _moveController: {fileID: 203385148}
 --- !u!1 &701815154
 GameObject:
   m_ObjectHideFlags: 0
