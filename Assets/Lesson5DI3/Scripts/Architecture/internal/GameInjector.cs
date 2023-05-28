@@ -3,9 +3,16 @@ using System.Reflection;
 
 namespace Lesson5DI3
 {
-    public static class DependencyInjector
+    internal sealed class GameInjector
     {
-        public static void Inject(object target)
+        private readonly GameLocator _serviceLocator;
+
+        public GameInjector(GameLocator serviceLocator)
+        {
+            _serviceLocator = serviceLocator;
+        }
+
+        internal void Inject(object target)
         {
             Type type = target.GetType();
             MethodInfo[] methods = type.GetMethods(
@@ -23,7 +30,7 @@ namespace Lesson5DI3
             }
         }
 
-        private static void InvokeMethod(MethodInfo method, object target)
+        private void InvokeMethod(MethodInfo method, object target)
         {
             ParameterInfo[] parameters = method.GetParameters();
 
@@ -33,7 +40,7 @@ namespace Lesson5DI3
             {
                 ParameterInfo parameter = parameters[i];
                 Type type = parameter.ParameterType;
-                object arg = ServiceLocator.GetService(type);
+                object arg = _serviceLocator.GetService(type);
                 args[i] = arg;
             }
 

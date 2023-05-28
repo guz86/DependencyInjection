@@ -1,4 +1,5 @@
 ﻿
+/*
 using UnityEngine;
 
 namespace Lesson5DI3
@@ -16,4 +17,4 @@ namespace Lesson5DI3
             }
         }
     }
-}
+}*/

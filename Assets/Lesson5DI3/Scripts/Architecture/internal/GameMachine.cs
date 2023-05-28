@@ -4,26 +4,17 @@ using UnityEngine;
 
 namespace Lesson5DI3
 {
-    public enum GameState
-    {
-        OFF = 0,
-        PLAYING = 1,
-        PAUSED = 2,
-        FINISHED = 3
-    }
-
-    public sealed class GameManager : MonoBehaviour
+    internal sealed class GameMachine
     {
         [ShowInInspector, ReadOnly]
-        public GameState State
+        internal GameState State
         {
             get { return this.state; }
         }
 
         private GameState state;
 
-        [ShowInInspector, ReadOnly]
-        private readonly List<IGameListener> listeners = new();
+        [ShowInInspector, ReadOnly] private readonly List<IGameListener> listeners = new();
 
         private readonly List<IGameUpdateListener> updateListeners = new();
 
@@ -31,7 +22,7 @@ namespace Lesson5DI3
 
         private readonly List<IGameLateUpdateListener> lateUpdateListeners = new();
 
-        private void Update()
+        internal void Update()
         {
             if (this.state != GameState.PLAYING)
             {
@@ -46,7 +37,7 @@ namespace Lesson5DI3
             }
         }
 
-        private void FixedUpdate()
+        internal void FixedUpdate()
         {
             if (this.state != GameState.PLAYING)
             {
@@ -61,7 +52,7 @@ namespace Lesson5DI3
             }
         }
 
-        private void LateUpdate()
+        internal void LateUpdate()
         {
             if (this.state != GameState.PLAYING)
             {
@@ -77,7 +68,7 @@ namespace Lesson5DI3
         }
 
 
-        public void AddListener(IGameListener listener)
+        internal void AddListener(IGameListener listener)
         {
             if (listener == null)
             {
@@ -101,14 +92,14 @@ namespace Lesson5DI3
                 this.lateUpdateListeners.Add(lateUpdateListener);
             }
         }
-        
-        public void RemoveListener(IGameListener listener)
+
+        internal void RemoveListener(IGameListener listener)
         {
             if (listener == null)
             {
                 return;
             }
-            
+
             this.listeners.Remove(listener);
 
             if (listener is IGameUpdateListener updateListener)
@@ -126,9 +117,9 @@ namespace Lesson5DI3
                 this.lateUpdateListeners.Remove(lateUpdateListener);
             }
         }
-        
-        [Button]
-        public void InitGame()
+
+
+        internal void InitGame()
         {
             foreach (var listener in this.listeners)
             {
@@ -136,12 +127,11 @@ namespace Lesson5DI3
                 {
                     initListener.OnInit();
                 }
-            } 
+            }
         }
-        
 
-        [Button]
-        public void StartGame()
+
+        internal void StartGame()
         {
             foreach (var listener in this.listeners)
             {
@@ -154,8 +144,8 @@ namespace Lesson5DI3
             this.state = GameState.PLAYING;
         }
 
-        [Button]
-        public void PauseGame()
+
+        internal void PauseGame()
         {
             foreach (var listener in this.listeners)
             {
@@ -168,8 +158,8 @@ namespace Lesson5DI3
             this.state = GameState.PAUSED;
         }
 
-        [Button]
-        public void ResumeGame()
+
+        internal void ResumeGame()
         {
             foreach (var listener in this.listeners)
             {
@@ -182,8 +172,8 @@ namespace Lesson5DI3
             this.state = GameState.PLAYING;
         }
 
-        [Button]
-        public void FinishGame()
+
+        internal void FinishGame()
         {
             foreach (var listener in this.listeners)
             {
