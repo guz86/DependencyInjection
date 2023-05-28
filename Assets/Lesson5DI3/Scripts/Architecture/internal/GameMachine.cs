@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -67,6 +68,13 @@ namespace Lesson5DI3
             }
         }
 
+        internal void AddListeners(IEnumerable<IGameListener> gameListeners)
+        {
+            foreach (var listener in gameListeners)
+            {
+                AddListener(listener);
+            }
+        }
 
         internal void AddListener(IGameListener listener)
         {
@@ -185,5 +193,7 @@ namespace Lesson5DI3
 
             this.state = GameState.FINISHED;
         }
+
+ 
     }
 }

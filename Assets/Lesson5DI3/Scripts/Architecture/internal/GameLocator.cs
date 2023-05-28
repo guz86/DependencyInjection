@@ -51,5 +51,10 @@ namespace Lesson5DI3
         {
             services.Add(service);
         }
+
+        public void AddServices(IEnumerable<object> services)
+        {
+            this.services.AddRange(services);
+        }
     }
 }

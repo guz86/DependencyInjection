@@ -8,13 +8,13 @@ namespace Lesson5DI3
     public sealed class GameSystem : MonoBehaviour
     {
         [SerializeField] private bool _autoRun = true;
-        
-        
+
+
         public GameSystem()
         {
             _injector = new GameInjector(_serviceLocator);
         }
-        
+
         #region GameListeners
 
         [ShowInInspector, ReadOnly]
@@ -54,6 +54,11 @@ namespace Lesson5DI3
         public void AddListener(IGameListener listener)
         {
             _gameMachine.AddListener(listener);
+        }
+        
+        public void AddListeners(IEnumerable<IGameListener> listeners)
+        {
+            _gameMachine.AddListeners(listeners);
         }
 
         public void RemoveListener(IGameListener listener)
@@ -117,12 +122,18 @@ namespace Lesson5DI3
             _serviceLocator.AddService(service);
         }
 
+        public void AddServices(IEnumerable<object> services)
+        {
+            _serviceLocator.AddServices(services);
+        }
+
+
         #endregion
 
         #region DependencyInjection
 
         private readonly GameInjector _injector;
-        
+
         public void Inject(object target)
         {
             _injector.Inject(target);

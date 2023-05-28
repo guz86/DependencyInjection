@@ -2,7 +2,7 @@
 
 namespace Lesson5DI3
 {
-    public class MoveController : MonoBehaviour, 
+    public class MoveController : 
         IGameStartListener,
         IGameFinishListener
     {

@@ -1,9 +1,10 @@
-﻿
+﻿using System;
 using UnityEngine;
 
 namespace Lesson5DI3
 {
-    public class CameraFollower : MonoBehaviour, 
+    [Serializable]
+    public class CameraFollower :
         IGameLateUpdateListener
     {
         [SerializeField] private Camera targetCamera;
@@ -20,11 +21,8 @@ namespace Lesson5DI3
 
         void IGameLateUpdateListener.OnLateUpdate(float deltaTime)
         {
-            this.targetCamera.transform.position = _playerService
-                .GetPlayer()
-                .GetPosition() + this.offset;
+            var position = _playerService.GetPlayer().GetPosition();
+            this.targetCamera.transform.position = position + this.offset;
         }
-
-        
     }
 }

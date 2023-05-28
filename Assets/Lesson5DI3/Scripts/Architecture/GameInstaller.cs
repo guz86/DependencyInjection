@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Lesson5DI3
 {
     [RequireComponent(typeof(GameSystem))]
     public sealed class GameInstaller : MonoBehaviour
     {
-        [SerializeField] private MonoBehaviour[] _services;
+        //[SerializeField] private MonoBehaviour[] _services;
+        [SerializeField] private GameModule[] _modules;
 
         private GameSystem _gameSystem;
 
@@ -14,39 +16,34 @@ namespace Lesson5DI3
             _gameSystem = GetComponent<GameSystem>();
             InstallServices();
             InstallListeners();
-            ResolveDependencies(transform);
+            ResolveDependencies();
         }
         
         private void InstallServices()
         {
-            foreach (var service in _services)
+            foreach (var module in _modules)
             {
-                _gameSystem.AddService(service);
+                var services = module.GetServices();
+                _gameSystem.AddServices(services);
             }
         }
         
         private void InstallListeners()
         {
-             var listeners = this.GetComponentsInChildren<IGameListener>();
+             //var listeners = this.GetComponentsInChildren<IGameListener>();
 
-            foreach (var listener in listeners)
+            foreach (var _module in _modules)
             {
-                _gameSystem.AddListener(listener);
+                var listeners = _module.GetListeners();
+                _gameSystem.AddListeners(listeners);
             }
         }
  
-        private void ResolveDependencies(Transform node)
+        private void ResolveDependencies()
         {
-            var behaviours = node.GetComponents<MonoBehaviour>();
-
-            foreach (var behaviour in behaviours)
+            foreach (var module in _modules)
             {
-                _gameSystem.Inject(behaviour);
-            }
-
-            foreach (Transform child in node)
-            {
-                ResolveDependencies(child);
+                module.ResolveDependencies(_gameSystem);
             }
         }
     }

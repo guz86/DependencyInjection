@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Lesson5DI3
 {
-    public class KeyboardInput : MonoBehaviour,
+    public class KeyboardInput :
         IGameUpdateListener
     {
         public event Action<Vector2> OnMove;
