@@ -1,9 +1,8 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Lesson5DI
 {
-    public class CameraFollower : MonoBehaviour, 
+    public class CameraFollower : MonoBehaviour,
         //IGameInitListener, 
         IGameLateUpdateListener
     {
@@ -18,7 +17,7 @@ namespace Lesson5DI
         {
             _playerService = playerService;
         }
-        
+
         // void IGameInitListener.OnInit()
         // {
         //     _playerService = ServiceLocator.GetService<IPlayerService>();
@@ -30,7 +29,5 @@ namespace Lesson5DI
                 .GetPlayer()
                 .GetPosition() + this.offset;
         }
-
-        
     }
 }
