@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Lesson6TeacherZenject.Scripts
 {
@@ -16,7 +17,8 @@ namespace Lesson6TeacherZenject.Scripts
         
         private Player _player;
 
-        public void Constract(Player player)
+        [Inject]
+        private void Constract(Player player)
         {
             _player = player;
         }
