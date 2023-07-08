@@ -62,12 +62,9 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
             
             //_context.OnGameInitialized();
             
-            foreach (var listener in _container.Resolve<IEnumerable<IGameListener>>())
+            foreach (var listener in _container.Resolve<IEnumerable<IInitializeGameListener>>())
             {
-                if (listener is IInitializeGameListener initializeListener)
-                {
-                    initializeListener.OnGameInitialized();
-                }
+                    listener.OnGameInitialized();
             }
             
         }
@@ -84,12 +81,9 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
             CurrentState = GameState.Playing;
             
             //_context.OnGameStarted();
-            foreach (var listener in _container.Resolve<IEnumerable<IGameListener>>())
+            foreach (var listener in _container.Resolve<IEnumerable<IStartGameListener>>())
             {
-                if (listener is IStartGameListener startListener)
-                {
-                    startListener.OnGameStarted();
-                }
+                    listener.OnGameStarted();
             }
         }
         
@@ -106,12 +100,9 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
             
             //_context.OnGameFinished();
             
-            foreach (var listener in _container.Resolve<IEnumerable<IGameListener>>())
+            foreach (var listener in _container.Resolve<IEnumerable<IFinishGameListener>>())
             {
-                if (listener is IFinishGameListener finishListener)
-                {
-                    finishListener.OnGameFinished();
-                }
+                    listener.OnGameFinished();
             }
         }
     }

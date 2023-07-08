@@ -24,7 +24,9 @@ namespace Lesson6TeacherZenject.Scripts.Zenject
         {
             foreach (var gameListener in GetComponentsInChildren<IGameListener>())
             {
-                Container.Bind<IGameListener>().FromInstance(gameListener).AsCached();
+                Container.BindInterfacesTo(gameListener.GetType()).FromInstance(gameListener).AsCached();
+                
+                //Container.Bind<IGameListener>().FromInstance(gameListener).AsCached();
             }
         }
     }
