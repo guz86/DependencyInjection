@@ -8,15 +8,17 @@ namespace Lesson6TeacherZenject.Scripts.Game
     public sealed class GameTimerController :  IStartGameListener, IFinishGameListener
     {
         private readonly GameTimer _gameTimer;
+        private readonly SaveRepository _saveRepository;
 
         // private void Awake()
         // {
         //     _gameTimer = GameTimer.Instance;
         // }
 
-        public GameTimerController(GameTimer gameTimer)
+        public GameTimerController(GameTimer gameTimer, SaveRepository saveRepository)
         {
             _gameTimer = gameTimer;
+            _saveRepository = saveRepository;
         }
         
         void IStartGameListener.OnGameStarted()
@@ -28,7 +30,7 @@ namespace Lesson6TeacherZenject.Scripts.Game
         {
             _gameTimer.Stop();
             
-            SaveRepository.SaveValue("last_time", _gameTimer.Time);
+            _saveRepository.SaveValue("last_time", _gameTimer.Time);
         }
     }
 }
