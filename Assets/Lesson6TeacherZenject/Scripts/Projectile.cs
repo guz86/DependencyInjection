@@ -16,11 +16,17 @@ namespace Lesson6TeacherZenject.Scripts
         
         private Player _player;
 
-        private void Awake()
+        public void Constract(Player player)
         {
-            //_player = Player.Instance;
-            _player = FindObjectOfType<Player>();
+            _player = player;
         }
+        
+        
+        // private void Awake()
+        // {
+        //     //_player = Player.Instance;
+        //     _player = FindObjectOfType<Player>();
+        // }
         
         private void Update()
         {
