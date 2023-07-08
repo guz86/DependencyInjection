@@ -15,9 +15,6 @@ namespace Lesson6TeacherZenject.Scripts.Zenject
 
         public override void InstallBindings()
         {
-            Container.BindFactory<Vector3, Projectile, Projectile.Factory>().FromComponentInNewPrefab(_projectilePrefab)
-                .UnderTransform(_projectileParentTransform).AsSingle();
-
             Container.Bind<Player>().FromComponentInNewPrefab(_playerPrefab).AsSingle();
 
 
