@@ -4,19 +4,24 @@ using UnityEngine;
 
 namespace Lesson6TeacherZenject.Scripts.Game
 {
-    public sealed class GameOverScreenController : MonoBehaviour, IInitializeGameListener, IFinishGameListener
+    public sealed class GameOverScreenController :IInitializeGameListener, IFinishGameListener
     {
-        [SerializeField]
-        private GameOverScreen _gameOverScreen;
-
-        private GameTimer _gameTimer;
-
-        private void Awake()
-        {
-            _gameTimer = GameTimer.Instance;
-        }
         
-        void IInitializeGameListener.OnGameInitialized()
+        private readonly GameOverScreen _gameOverScreen;
+        private readonly GameTimer _gameTimer;
+
+        // private void Awake()
+        // {
+        //     _gameTimer = GameTimer.Instance;
+        // }
+
+        public GameOverScreenController(GameOverScreen gameOverScreen, GameTimer gameTimer)
+        {
+            _gameOverScreen = gameOverScreen;
+            _gameTimer = gameTimer;
+        }
+
+            void IInitializeGameListener.OnGameInitialized()
         {
             _gameOverScreen.Hide();
         }

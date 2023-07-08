@@ -5,21 +5,26 @@ using UnityEngine;
 namespace Lesson6TeacherZenject.Scripts.Game
 {
     [AddComponentMenu("Lesson6/GameTimerController")]
-    public sealed class GameTimerController : MonoBehaviour, IStartGameListener, IFinishGameListener
+    public sealed class GameTimerController :  IStartGameListener, IFinishGameListener
     {
-        private GameTimer _gameTimer;
+        private readonly GameTimer _gameTimer;
 
-        private void Awake()
+        // private void Awake()
+        // {
+        //     _gameTimer = GameTimer.Instance;
+        // }
+
+        public GameTimerController(GameTimer gameTimer)
         {
-            _gameTimer = GameTimer.Instance;
+            _gameTimer = gameTimer;
         }
-
-        public void OnGameStarted()
+        
+        void IStartGameListener.OnGameStarted()
         {
             _gameTimer.Start();
         }
 
-        public void OnGameFinished()
+        void IFinishGameListener.OnGameFinished()
         {
             _gameTimer.Stop();
             

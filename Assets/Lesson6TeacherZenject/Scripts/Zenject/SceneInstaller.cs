@@ -1,4 +1,6 @@
 ﻿using Lesson6TeacherZenject.Scripts.Architecture;
+using Lesson6TeacherZenject.Scripts.Game;
+using Lesson6TeacherZenject.Scripts.UI;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +13,10 @@ namespace Lesson6TeacherZenject.Scripts.Zenject
         
         public override void InstallBindings()
         {
+            
+            Container.Bind<GameTimer>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<GameOverScreen>().FromComponentInHierarchy().AsSingle();
+            
             //Container.Bind<GameManagerContext>().AsSingle();
             
             //Container.Bind<IGameManager>().To<GameManager>().FromInstance(_gameManager).AsSingle();

@@ -1,6 +1,7 @@
 using Lesson6TeacherZenject.Scripts.Architecture;
 using Lesson6TeacherZenject.Scripts.Game;
 using UnityEngine;
+using Zenject;
 
 namespace Lesson6TeacherZenject.Scripts.UI
 {
@@ -12,9 +13,10 @@ namespace Lesson6TeacherZenject.Scripts.UI
 
         private GameTimer _gameTimer;
         
-        private void Awake()
+        [Inject]
+        private void Constuct(GameTimer gameTimer)
         {
-            _gameTimer = GameTimer.Instance;
+            _gameTimer = gameTimer;
         }
 
         void IStartGameListener.OnGameStarted()

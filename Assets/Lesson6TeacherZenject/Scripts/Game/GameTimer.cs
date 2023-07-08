@@ -8,7 +8,7 @@ namespace Lesson6TeacherZenject.Scripts.Game
     [AddComponentMenu("Lesson6/GameTimer")]
     public sealed class GameTimer : MonoBehaviour
     {
-        public static GameTimer Instance { get; private set; }
+  //      public static GameTimer Instance { get; private set; }
 
         public event Action<float> Ticked;
 
@@ -18,17 +18,17 @@ namespace Lesson6TeacherZenject.Scripts.Game
         [ShowInInspector, ReadOnly]
         public bool IsSet { get; private set; }
 
-        private void Awake()
-        {
-            if (Instance != null)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                Instance = this;
-            }
-        }
+        // private void Awake()
+        // {
+        //     if (Instance != null)
+        //     {
+        //         Destroy(this);
+        //     }
+        //     else
+        //     {
+        //         Instance = this;
+        //     }
+        // }
 
         private void Update()
         {
