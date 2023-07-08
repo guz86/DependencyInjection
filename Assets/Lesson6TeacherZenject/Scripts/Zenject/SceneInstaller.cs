@@ -9,12 +9,14 @@ namespace Lesson6TeacherZenject.Scripts.Zenject
     public sealed class SceneInstaller : MonoInstaller<SceneInstaller>
     {
         //[SerializeField] private GameManager _gameManager;
-        
+        [SerializeField] private Player _playerPrefab;
         
         public override void InstallBindings()
         {
+            Container.Bind<Player>().FromComponentInNewPrefab(_playerPrefab).AsSingle();
             
-            Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
+            
+            //Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
             
             //Container.Bind<GameTimer>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<GameTimer>().AsSingle();
