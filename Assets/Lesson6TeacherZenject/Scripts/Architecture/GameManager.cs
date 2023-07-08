@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -19,7 +20,8 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
         //private readonly GameManagerContext _context = new();
 
         [Inject]
-        private readonly GameManagerContext _context;
+        //private readonly GameManagerContext _context;
+        private readonly DiContainer _container;
         
         // private void Awake()
         // {
@@ -42,10 +44,10 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
             }
         }
 
-        public void AddListener(IGameListener listener)
-        {
-            _context.AddListener(listener);
-        }
+        // public void AddListener(IGameListener listener)
+        // {
+        //     _context.AddListener(listener);
+        // }
 
         [Button]
         public void InitializeGame()
@@ -58,7 +60,16 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
 
             CurrentState = GameState.Initialized;
             
-            _context.OnGameInitialized();
+            //_context.OnGameInitialized();
+            
+            foreach (var listener in _container.Resolve<IEnumerable<IGameListener>>())
+            {
+                if (listener is IInitializeGameListener initializeListener)
+                {
+                    initializeListener.OnGameInitialized();
+                }
+            }
+            
         }
 
         [Button]
@@ -72,7 +83,14 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
 
             CurrentState = GameState.Playing;
             
-            _context.OnGameStarted();
+            //_context.OnGameStarted();
+            foreach (var listener in _container.Resolve<IEnumerable<IGameListener>>())
+            {
+                if (listener is IStartGameListener startListener)
+                {
+                    startListener.OnGameStarted();
+                }
+            }
         }
         
         [Button]
@@ -86,7 +104,15 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
 
             CurrentState = GameState.Finished;
             
-            _context.OnGameFinished();
+            //_context.OnGameFinished();
+            
+            foreach (var listener in _container.Resolve<IEnumerable<IGameListener>>())
+            {
+                if (listener is IFinishGameListener finishListener)
+                {
+                    finishListener.OnGameFinished();
+                }
+            }
         }
     }
 }

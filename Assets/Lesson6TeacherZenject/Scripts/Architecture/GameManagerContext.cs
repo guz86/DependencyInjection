@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 
 namespace Lesson6TeacherZenject.Scripts.Architecture
 {
@@ -51,4 +51,4 @@ namespace Lesson6TeacherZenject.Scripts.Architecture
             }
         }
     }
-}
+}*/

@@ -4,7 +4,7 @@
     {
         public GameState CurrentState { get; }
         
-        public void AddListener(IGameListener listener);
+        //public void AddListener(IGameListener listener);
         
         public void InitializeGame();
 
