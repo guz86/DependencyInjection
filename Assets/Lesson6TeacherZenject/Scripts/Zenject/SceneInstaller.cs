@@ -14,6 +14,8 @@ namespace Lesson6TeacherZenject.Scripts.Zenject
         public override void InstallBindings()
         {
             
+            Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
+            
             //Container.Bind<GameTimer>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<GameTimer>().AsSingle();
             

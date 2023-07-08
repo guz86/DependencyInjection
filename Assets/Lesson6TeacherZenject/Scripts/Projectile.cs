@@ -18,7 +18,8 @@ namespace Lesson6TeacherZenject.Scripts
 
         private void Awake()
         {
-            _player = Player.Instance;
+            //_player = Player.Instance;
+            _player = FindObjectOfType<Player>();
         }
         
         private void Update()

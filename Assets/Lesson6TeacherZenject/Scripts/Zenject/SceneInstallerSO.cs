@@ -11,6 +11,7 @@ namespace Lesson6TeacherZenject.Scripts.Zenject
         {
             Container.BindInterfacesTo<GameTimerController>().AsSingle();
             Container.BindInterfacesTo<GameOverScreenController>().AsSingle();
+            Container.BindInterfacesTo<PlayerDestroyedObserver>().AsSingle();
         }
     }
 }

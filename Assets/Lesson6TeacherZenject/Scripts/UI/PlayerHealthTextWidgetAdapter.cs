@@ -1,5 +1,6 @@
 using Lesson6TeacherZenject.Scripts.Architecture;
 using UnityEngine;
+using Zenject;
 
 namespace Lesson6TeacherZenject.Scripts.UI
 {
@@ -11,9 +12,15 @@ namespace Lesson6TeacherZenject.Scripts.UI
 
         private Player _player;
 
-        private void Awake()
+        // private void Awake()
+        // {
+        //     _player = Player.Instance;
+        // }
+        
+        [Inject]
+        private void Constuct(Player player)
         {
-            _player = Player.Instance;
+            _player = player;
         }
 
         void IStartGameListener.OnGameStarted()

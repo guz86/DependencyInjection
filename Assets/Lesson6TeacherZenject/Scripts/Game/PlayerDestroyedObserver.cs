@@ -4,22 +4,29 @@ using Zenject;
 
 namespace Lesson6TeacherZenject.Scripts.Game
 {
-    public sealed class PlayerDestroyedObserver : MonoBehaviour, IStartGameListener, IFinishGameListener
+    public sealed class PlayerDestroyedObserver : IStartGameListener, IFinishGameListener
     {
-        private IGameManager _gameManager;
-        private Player _player;
+        private readonly IGameManager _gameManager;
+        private readonly Player _player;
 
-        [Inject]
-        private void Construct(IGameManager gameManager)
+        // [Inject]
+        // private void Construct(IGameManager gameManager)
+        // {
+        //     _gameManager = gameManager;
+        // }
+        
+        
+        private PlayerDestroyedObserver(IGameManager gameManager, Player player)
         {
             _gameManager = gameManager;
+            _player = player;
         }
         
-        private void Awake()
-        {
-            //_gameManager = GameManager.Instance;
-            _player = Player.Instance;
-        }
+        // private void Awake()
+        // {
+        //     //_gameManager = GameManager.Instance;
+        //     _player = Player.Instance;
+        // }
 
         void IStartGameListener.OnGameStarted()
         {
