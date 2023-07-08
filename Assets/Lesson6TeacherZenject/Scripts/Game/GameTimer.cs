@@ -1,12 +1,13 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Lesson6TeacherZenject.Scripts.Game
 {
     [DefaultExecutionOrder(-100)]
     [AddComponentMenu("Lesson6/GameTimer")]
-    public sealed class GameTimer : MonoBehaviour
+    public sealed class GameTimer : ITickable
     {
   //      public static GameTimer Instance { get; private set; }
 
@@ -30,7 +31,7 @@ namespace Lesson6TeacherZenject.Scripts.Game
         //     }
         // }
 
-        private void Update()
+        void ITickable.Tick()
         {
             if (IsSet)
             {
