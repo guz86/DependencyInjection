@@ -1,6 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Lesson6TeacherZenject.Scripts
 {
@@ -23,7 +24,7 @@ namespace Lesson6TeacherZenject.Scripts
 
         private CharacterController _characterController;
 
-        private void Awake()
+        /*private void Awake()
         {
             // if (Instance != null)
             // {
@@ -35,6 +36,12 @@ namespace Lesson6TeacherZenject.Scripts
 
                 _characterController = GetComponent<CharacterController>();
          //   }
+        }*/
+        
+        [Inject]
+        private void Constuct(CharacterController characterController)
+        {
+            _characterController = characterController;
         }
         
         private void Update()
