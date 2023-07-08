@@ -18,9 +18,10 @@ namespace Lesson6TeacherZenject.Scripts
         private Player _player;
 
         [Inject]
-        private void Constract(Player player)
+        private void Constract(Player player, Vector3 position)
         {
             _player = player;
+            transform.position = position;
         }
         
         
@@ -52,6 +53,11 @@ namespace Lesson6TeacherZenject.Scripts
                 var movement = _speed * Time.deltaTime * direction.normalized;
                 transform.position += movement;
             }
+        }
+
+        public sealed class Factory : PlaceholderFactory<Vector3, Projectile>
+        {
+            
         }
     }
 }

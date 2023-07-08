@@ -2,6 +2,7 @@ using System.Collections;
 using Lesson6TeacherZenject.Scripts.Architecture;
 using Lesson6TeacherZenject.Scripts.Components;
 using UnityEngine;
+using Zenject;
 
 namespace Lesson6TeacherZenject.Scripts
 {
@@ -17,8 +18,10 @@ namespace Lesson6TeacherZenject.Scripts
         [SerializeField]
         private float _maxShootTimeout = 1.5f;
 
-        [SerializeField]
-        private ProjectileSpawner _projectileSpawner;
+        // [SerializeField]
+        // private ProjectileSpawner _projectileSpawner;
+
+        [Inject] private Projectile.Factory _factory;
 
         private Vector3 _shootPosition;
         private Coroutine _attackCoroutine;
@@ -45,7 +48,8 @@ namespace Lesson6TeacherZenject.Scripts
                 var timeout = Random.Range(_minShootTimeout, _maxShootTimeout);
                 yield return new WaitForSeconds(timeout);
 
-                _projectileSpawner.SpawnProjectile(transform, _shootPosition);
+                //_projectileSpawner.SpawnProjectile(transform, _shootPosition);
+                _factory.Create(_shootPosition);
             }
         
             // ReSharper disable once IteratorNeverReturns
