@@ -16,11 +16,13 @@ namespace Lesson6TeacherZenject.Scripts
         private float _speed = 8;
         
         private Player _player;
+        private Pool _pool;
 
         [Inject]
-        private void Constract(Player player)
+        private void Constract(Player player, Pool pool)
         {
             _player = player;
+            _pool = pool;
         }
         
         
@@ -34,7 +36,8 @@ namespace Lesson6TeacherZenject.Scripts
         {
             if (_player == null)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                _pool.Despawn(this);
                 return;
             }
             
@@ -43,7 +46,8 @@ namespace Lesson6TeacherZenject.Scripts
             if (direction.magnitude <= _attackDistance)
             {
                 _player.TakeDamage(_damage);
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                _pool.Despawn(this);
             }
             else
             {
@@ -51,6 +55,14 @@ namespace Lesson6TeacherZenject.Scripts
 
                 var movement = _speed * Time.deltaTime * direction.normalized;
                 transform.position += movement;
+            }
+        }
+        
+        public sealed class Pool : MonoMemoryPool<Vector3, Projectile>
+        {
+            protected override void Reinitialize(Vector3 position, Projectile projectile)
+            {
+                projectile.transform.position = position;
             }
         }
     }

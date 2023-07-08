@@ -15,6 +15,9 @@ namespace Lesson6TeacherZenject.Scripts.Zenject
 
         public override void InstallBindings()
         {
+            Container.BindMemoryPool<Projectile, Projectile.Pool>().WithInitialSize(5)
+                .FromComponentInNewPrefab(_projectilePrefab).UnderTransform(_projectileParentTransform).AsSingle();
+
             Container.Bind<Player>().FromComponentInNewPrefab(_playerPrefab).AsSingle();
 
 
